@@ -7,22 +7,16 @@
 
 namespace Lab3Vector{
     Vector::Vector(){
-      num_elem = MAX_SIZE;
-      arr = new double[MAX_SIZE];
-
-      for (int i = 0; i < MAX_SIZE; i++)
-        arr[i] = 0;
+      num_elem = 0;
     };
 
     Vector::Vector(double first){
       num_elem = 1;
-      arr = new double[MAX_SIZE];
       arr[0] = first;
     };
 
     Vector::Vector(int n, double * elements){
       num_elem = n;
-      arr = new double[MAX_SIZE];
       for (int i = 0; i < num_elem; i++)
         arr[i] = elements[i];
     };
