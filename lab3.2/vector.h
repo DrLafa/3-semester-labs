@@ -13,6 +13,7 @@ namespace Lab3Vector{
     Vector();
     Vector(double first);
     Vector(int n, double * elements);
+    ~Vector();
 
     friend std::ostream& operator<< (std::ostream &out, const Vector &vector);
     friend std::istream& operator>> (std::istream &in, Vector &vector);
@@ -20,8 +21,6 @@ namespace Lab3Vector{
     friend Vector operator - ( Vector &vector, Vector &vector2);
     friend Vector operator * ( Vector &vector, Vector &vector2);
     friend Vector operator += ( Vector &vector, double elem);
-
-    void deleteArray();
 
 	  void addElem(double elem);
 

@@ -23,7 +23,7 @@ namespace Lab3Vector{
         arr[i] = elements[i];
     };
 
-    void Vector::deleteArray(){
+    Vector::~Vector(){
       delete [] arr;
     }
 

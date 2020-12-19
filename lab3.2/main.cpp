@@ -60,8 +60,7 @@ int main(){
 
     switch(std::stoi(line)){
       case 1:
-        if (vec)
-          delete vec;
+        delete vec;
         vec = new Lab3Vector::Vector();
         break;
       case 2:
@@ -79,13 +78,12 @@ int main(){
               while (std::cin.get() != '\n') ; // empty loop
           }
         }
-        if (vec)
-          delete vec;
+
+        delete vec;
         vec = new Lab3Vector::Vector(input);
         break;
       case 3:
-        if (vec)
-          delete vec;
+        delete vec;
         vec = new Lab3Vector::Vector();
         std::cin >> *vec;
         break;
