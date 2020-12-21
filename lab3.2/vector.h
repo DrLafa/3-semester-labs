@@ -3,7 +3,7 @@
 #ifndef vector_H
 #define vector_H
 
-namespace Lab3Vector{
+namespace oop3{
   class Vector{
   private:
     double * arr;     // статический массив для максимум 20 элементов
@@ -14,10 +14,12 @@ namespace Lab3Vector{
     Vector(double first);
     Vector(int n, double * elements);
     ~Vector();
+    Vector(const Vector &); // конструктор копирования
 
     friend std::ostream& operator<< (std::ostream &out, const Vector &vector);
     friend std::istream& operator>> (std::istream &in, Vector &vector);
-    friend Vector operator + ( Vector &vector, Vector &vector2);
+    vector &operator = (const..)
+    friend Vector operator + (const Vector &vector, const Vector &vector2);
     friend Vector operator - ( Vector &vector, Vector &vector2);
     friend Vector operator * ( Vector &vector, Vector &vector2);
     friend Vector operator += ( Vector &vector, double elem);
@@ -30,7 +32,7 @@ namespace Lab3Vector{
 
   	void multiplyVector(Vector &vector);
 
-    int count();
+    int length();
 
     double getElem(int n);
 

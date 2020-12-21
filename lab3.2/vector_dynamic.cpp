@@ -3,9 +3,10 @@
 #include <cmath>
 #include <iostream>
 #include <ostream>
+#include "getnum.h"
 
 
-namespace Lab3Vector{
+namespace oop3{
     Vector::Vector(){
       int num_elem = 0;
     };
@@ -25,26 +26,46 @@ namespace Lab3Vector{
 
     Vector::~Vector(){
       delete [] arr;
+    };
+
+    Vector::Vector(const Vector &vector){
+      num_elem = vector.num_elem;
+      arr = new double[num_elem];
+      for (int i = 0; i < num_elem; i++)
+        arr[i] = vector.arr[i];
+    };
+
+    Vector &Vector::operator= (const Vector &vector){
+      delete arr;
+      num_elem = vector.num_elem
+      arr = new double[num_elem];
+      for (int i = 0; i < num_elem; i++)
+        arr[i] = vector.arr[i];
+
+      return *this;
     }
 
-    Vector operator + ( Vector &vector, Vector &vector2){
-      if ( vector.count() != vector2.count() ){
-        std::cout << "[-] Vectors should have the same length";
-        return vector;
-      } else {
-        for (int i = 0; i < vector.count(); i++){
-          vector.arr[i] += vector2.arr[i];
-        }
-        return vector;
+    Vector operator + ( const Vector &vector, const Vector &vector2){
+      if ( vector.num_elem != vector2.num_elem ){
+        throw std::length_error("Vectors should have the same length");
       }
+
+      double * elements = new double[vector.num_elem];
+
+      for (int i = 0; i < vector.num_elem; i++){
+        elements[i] = vector.arr[i] + vector2.arr[i];
+      }
+
+      Vector * vec = new Vector(vector.num_elem, elements);
+      return *vec;
     }
 
     Vector operator - ( Vector &vector, Vector &vector2){
-      if ( vector.count() != vector2.count() ){
+      if ( vector.length() != vector2.length() ){
         std::cout << "[-] Vectors should have the same length";
         return vector;
       } else {
-        for (int i = 0; i < vector.count(); i++){
+        for (int i = 0; i < vector.length(); i++){
           vector.arr[i] -= vector2.arr[i];
         }
         return vector;
@@ -52,11 +73,11 @@ namespace Lab3Vector{
     }
 
     Vector operator * ( Vector &vector, Vector &vector2){
-      if ( vector.count() != vector2.count() ){
+      if ( vector.length() != vector2.length() ){
         std::cout << "[-] Vectors should have the same length";
         return vector;
       } else {
-        for (int i = 0; i < vector.count(); i++){
+        for (int i = 0; i < vector.length(); i++){
           vector.arr[i] *= vector2.arr[i];
         }
         return vector;
@@ -77,7 +98,7 @@ namespace Lab3Vector{
       return vector;
     }
 
-    int Vector::count(){
+    int Vector::length(){
       return num_elem;
     }
 
@@ -110,41 +131,16 @@ namespace Lab3Vector{
     }
 
     std::istream& operator>> (std::istream &in, Vector &vector){
-      int num;
-      while (1) {
-        std::cout << "(input value of element) >> ";
-        if (in >> num) {
-            // valid number
-            in.clear();
-            while (in.get() != '\n') ; // empty loop
-            break;
-        } else {
-            // not a valid number
-            std::cout << "(error) not a number" << std::endl;
-            in.clear();
-            while (in.get() != '\n') ; // empty loop
-        }
-      }
+      std::cout << "(input amount of elements) >> ";
+      int num = getNum<int>();
+      double input;
+
       vector.num_elem = num;
       vector.arr = new double[num];
-      double input;
-      std::cout << num << std::endl;
+
       for (int i = 0; i < num; i++){
-        while (1) {
-          std::cout << "(input value of element " << i+1 << "/" << num << ") >> ";
-          if (in >> input) {
-              // valid number
-              in.clear();
-              while (in.get() != '\n') ; // empty loop
-              vector.arr[i] = input;
-              break;
-          } else {
-              // not a valid number
-              std::cout << "(error) not a number" << std::endl;
-              in.clear();
-              while (in.get() != '\n') ; // empty loop
-          }
-        }
+        std::cout << "(input value of element " << i+1 << "/" << num << ") >> ";
+        vector.arr[i] = getNum<double>();
       }
       return in;
     }
