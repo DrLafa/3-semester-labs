@@ -18,25 +18,11 @@ namespace oop3{
 
     friend std::ostream& operator<< (std::ostream &out, const Vector &vector);
     friend std::istream& operator>> (std::istream &in, Vector &vector);
-    vector &operator = (const..)
+    Vector &operator = (const Vector &vector);
     friend Vector operator + (const Vector &vector, const Vector &vector2);
-    friend Vector operator - ( Vector &vector, Vector &vector2);
-    friend Vector operator * ( Vector &vector, Vector &vector2);
-    friend Vector operator += ( Vector &vector, double elem);
-
-	  void addElem(double elem);
-
-  	void addVector(Vector &vector);
-
-  	void substractVector(Vector &vector);
-
-  	void multiplyVector(Vector &vector);
-
-    int length();
-
-    double getElem(int n);
-
-  	void clearVector();
+    friend Vector operator - (const Vector &vector, const Vector &vector2);
+    friend Vector operator * (const Vector &vector, const Vector &vector2);
+    Vector &operator += ( double elem);
 
     double getNorm();
 

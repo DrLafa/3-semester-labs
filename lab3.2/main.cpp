@@ -70,9 +70,6 @@ int main(){
         try{
           std::cin >> *vector_2;
 
-          //delete tmp_vector;
-          //tmp_vector = NULL;
-
           *tmp_vector = *vector + *vector_2;
 
           delete vector;
@@ -84,12 +81,45 @@ int main(){
         }
         break;
       case 5:
+        try{
+          std::cin >> *vector_2;
+
+          *tmp_vector = *vector - *vector_2;
+
+          delete vector;
+          vector = new oop3::Vector(*tmp_vector);
+        }catch(const std::invalid_argument &err){
+          std::cout << "(error) Invalid input: " << err.what() << std::endl;
+        }catch(const std::length_error &err){
+          std::cout << "(error) Invalid input: " << err.what() << std::endl;
+        }
         break;
       case 6:
+        try{
+          std::cin >> *vector_2;
+
+          *tmp_vector = *vector * *vector_2;
+
+          delete vector;
+          vector = new oop3::Vector(*tmp_vector);
+        }catch(const std::invalid_argument &err){
+          std::cout << "(error) Invalid input: " << err.what() << std::endl;
+        }catch(const std::length_error &err){
+          std::cout << "(error) Invalid input: " << err.what() << std::endl;
+        }
         break;
       case 7:
+        try{
+          std::cout << vector->getNorm() << std::endl;
+        }catch(const std::length_error &err){
+          std::cout << "(error): " << err.what() << std::endl;
+        }
         break;
       case 8:
+        std::cout << "(input value of element) >> ";
+        input = oop3::getNum<double>();
+
+        *vector += input;
         break;
       case 9:
         std::cout << *vector << std::endl;
@@ -105,154 +135,3 @@ int main(){
   }
   return 0;
 }
-
-/*
-int main(){
-  Lab3Vector::Vector * vec = NULL;
-  Lab3Vector::Vector * tmp_vec = NULL;
-  Lab3Vector::Vector * vec1 = NULL;
-  Lab3Vector::Vector * vec2 = NULL;
-  std::string line;
-  double input;
-  int n;
-
-  show_help();
-  while (std::getline(std::cin, line)){
-    if (!is_number(line)){
-      show_help();
-      continue;
-    }
-
-    switch(std::stoi(line)){
-      case 1:
-        if (vec)
-          delete vec;
-        vec = new Lab3Vector::Vector();
-        break;
-      case 2:
-        try{
-          std::cout << "(input value of element) >> ";
-          if (std::cin >> input) {
-              // valid number
-              std::cin.clear();
-              while (std::cin.get() != '\n') ; // empty loop
-          } else {
-              // not a valid number
-              std::cin.clear();
-              while (std::cin.get() != '\n') ; // empty loop
-              throw std::invalid_argument("invalid argument");
-          }
-        } catch (std::invalid_argument &err){
-          std::cout << "Exception detected: " << err.what() << std::endl;
-          break;
-        }
-
-        if (vec)
-          delete vec;
-        vec = new Lab3Vector::Vector(input);
-        break;
-      case 3:
-        if (vec)
-          delete vec;
-        vec = new Lab3Vector::Vector();
-
-        try {
-          std::cin >> *vec;
-        } catch (std::invalid_argument &err){
-          std::cout << "Exception detected: " << err.what() << std::endl;
-          delete vec;
-          vec = NULL;
-        }
-        break;
-      case 4:
-        if (!vec){
-          std::cout << "Vector is no initialized" << std::endl;
-          break;
-        }
-        vec1 = new Lab3Vector::Vector(*vec);
-        std::cout << *vec1 << std::endl;
-        vec2 = new Lab3Vector::Vector();
-        try {
-          std::cin >> *vec2;
-        } catch (std::invalid_argument &err){
-          std::cout << "Exception detected: " << err.what() << std::endl;
-          delete vec2;
-          vec2 = NULL;
-          break;
-        }
-        std::cout << *vec2 << std::endl;
-        try {
-          *vec = *vec1 + *vec2;
-          std::cout << *vec << std::endl;
-          delete vec1;
-          vec1 = NULL;
-          break;
-        } catch (const char* exception){
-          std::cout << "Exception detected: " << exception << std::endl;
-          vec = vec1;
-        }
-
-        delete vec2;
-        vec2 = NULL;
-        break;
-
-      case 5:
-        if (!vec){
-          std::cout << "Vector is no initialized" << std::endl;
-          break;
-        }
-        tmp_vec = new Lab3Vector::Vector();
-
-        std::cin >> *tmp_vec;
-        *vec = *vec - *tmp_vec;
-
-        delete tmp_vec;
-        break;
-      case 6:
-        if (!vec){
-          std::cout << "Vector is no initialized" << std::endl;
-          break;
-        }
-        tmp_vec = new Lab3Vector::Vector();
-
-        std::cin >> *tmp_vec;
-        *vec = *vec * *tmp_vec;
-
-        delete tmp_vec;
-        break;
-      case 7:
-        if (!vec){
-          std::cout << "Vector is no initialized" << std::endl;
-          break;
-        }
-        if (vec->length() == 0){
-          std::cout << "Can't get norm of null vector" << std::endl;
-          break;
-        }
-        std::cout << "Norm of vector: " << vec->getNorm() << std::endl;
-        break;
-      case 8:
-        if (!vec){
-          std::cout << "Vector is no initialized" << std::endl;
-          break;
-        }
-        *vec += get_input("(input value of element) >> ", "(error) not a number");
-        break;
-      case 9:
-        if (!vec){
-          std::cout << "Vector is no initialized" << std::endl;
-          break;
-        }
-        std::cout << *vec << std::endl;
-        break;
-      case 10:
-        return 0;
-      default:
-        break;
-    }
-    show_help();
-  }
-
-  return 0;
-}
-*/
