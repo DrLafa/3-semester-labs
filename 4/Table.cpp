@@ -4,8 +4,37 @@
 namespace oop4 {
     Table::Table() = default;
 
+    bool Table::NamePresent(std::string name){
+      if (this->map.count(name) > 0){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
     void Table::Add(Departament * dep){
       map.insert(std::make_pair(dep->getProfile(), dep));
+    }
+
+    Departament * Table::Find(std::string name){
+      if (this->NamePresent(name)){
+        return this->map.find(name)->second;
+      }else{
+        return NULL;
+      }
+    }
+
+    bool Table::Delete(std::string name){
+      Departament * c = NULL;
+
+      if (this->NamePresent(name)){
+        c = this->Find(name);
+        this->map.erase(name);
+        delete c;
+        return true;
+      } else{
+        return false;
+      }
     }
 
     std::ostream& operator<< (std::ostream &out, const Table &table){

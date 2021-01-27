@@ -9,10 +9,7 @@ namespace oop4 {
     this->setProfile(profile);
     this->setLicense(license);
     this->setLocation(x, y);
-  }
-
-  const std::string Radiostation::getType(){
-    return this->type;
+    this->setType("radio");
   }
 
   void Radiostation::changeFreqBand() {
@@ -20,14 +17,41 @@ namespace oop4 {
     int count = oop3::getNum<int>();
     float freq, band;
 
-    freqBand.clear();
+    this->freqBand.clear();
     for (int i=0; i<count; i++){
       std::cout << "\t " << i+1 << ") frequency: ";
       freq = oop3::getNum<float>();
       std::cout << "\t " << i+1 << ") bandwidth: ";
       band = oop3::getNum<float>();
 
-      freqBand[freq] = band;
+      this->freqBand[freq] = band;
     }
+  }
+
+  std::ostream &Radiostation::show(std::ostream &out) const {
+    out << this->getProfile();
+    out << ": {\n\ttype: ";
+    out << this->getType();
+    out << "\n\tlicense: ";
+    out << this->getLicense();
+    out << "\n\tlocation: {\n\t\tx: ";
+    out << this->getLocation().x;
+    out << "\n\t\ty: ";
+    out << this->getLocation().y;
+    out << "\n\t\tfrequencies: {\n";
+    for (auto it = this->freqBand.begin(); it != this->freqBand.end(); ++it){
+      out << "\t\t\t{ freq: ";
+      out << it->first;
+      out << "\n\t\t\t  bandwidth: ";
+      out << it->second;
+      out << " }\n";
+    }
+    out << "\t\t}\n\t}";
+    return out;
+  }
+
+  std::ostream &Radiostation::showOptions(std::ostream &out) const {
+    out << "\t1) Edit frequency and band list\n";
+    return out;
   }
 }

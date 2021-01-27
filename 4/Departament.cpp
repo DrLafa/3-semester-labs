@@ -4,7 +4,7 @@
 namespace oop4 {
   std::ostream& operator << (std::ostream& out, const Departament& dep){
       out << "profile -> " << dep.profile << std::endl;
-      out << "type -> " << dep.getType() << std::endl;
+      out << "type -> " << dep.type << std::endl;
       out << "license -> " << dep.license << std::endl;
       out << "location -> (" << dep.location.x << ", " << dep.location.y << ")" << std::endl;
       //dep.show(out);
@@ -27,14 +27,22 @@ namespace oop4 {
     return *this;
   }
 
-  Location Departament::getLocation() {
+  Departament &Departament::setType(std::string type)  {
+    this->type = type;
+    return *this;
+  }
+
+  Location Departament::getLocation() const {
     return this->location;
   }
 
-  std::string Departament::getProfile() {
+  std::string Departament::getProfile() const {
     return this->profile;
   }
-  const int Departament::getLicense() {
+  int Departament::getLicense() const {
     return this->license;
+  }
+  std::string Departament::getType() const {
+    return this->type;
   }
 }

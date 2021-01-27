@@ -9,11 +9,14 @@ namespace oop4 {
       std::map<std::string, Departament*> map;
     public:
       Table();
+
+      bool NamePresent(std::string name);
       void Add(Departament *);
+      Departament * Find(std::string name);
+      bool Delete(std::string name);
 
       friend std::ostream& operator<< (std::ostream &out, const Table &table);
       //Departament* Find_element(int key);
-      //void Display();
       //Table &Add(Departament *);
       //void Show_element(int k);
       //Table &Del(int);

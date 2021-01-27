@@ -6,14 +6,23 @@ namespace oop4 {
     class Telecom : public Departament {
 
     private:
-      std::string type = "telecom";
       float freq;
+
+      void changeFreqBand(){ throw "(err) Not implemented"; };
+      std::ostream &showPeriodicy(std::ostream &out) const {
+        throw "(err) Not implemented";
+        return out;
+      };
+      void setPeriodicy(std::map<int, std::string> &){ throw "(err) Not implemented"; };
+      void setCirculation(int){ throw "(err) Not implemented"; };
     public:
       Telecom();
       Telecom(std::string, int, int, int, float);
 
-      virtual std::string getType() const override;
-      void changeFreqBand(){};
+      void setFreq(float);
+
+      std::ostream & show(std::ostream &) const override ;
+      std::ostream &showOptions(std::ostream &)const override;
     };
 }
 

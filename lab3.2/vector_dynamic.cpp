@@ -134,3 +134,5 @@ namespace oop3{
       return in;
     }
 }
+
+uml диаграмма

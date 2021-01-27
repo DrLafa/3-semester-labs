@@ -7,14 +7,22 @@ namespace oop4 {
     class Radiostation : public Departament {
 
     private:
-      std::string type = "radio";
       std::map<float, float> freqBand; // пара частота-полоса
+
+      std::ostream &showPeriodicy(std::ostream &out) const {
+        throw "This method not implemented here";
+        return out;
+      };
+      void setPeriodicy(std::map<int, std::string> &){ throw "(err) Not implemented"; };
+      void setCirculation(int){ throw "(err) Not implemented"; };
+      void setFreq(float){ throw "(err) Not implemented"; };
     public:
       Radiostation();
       Radiostation(std::string profile, int license, int x, int y);
 
-      virtual std::string getType() const override;
-      virtual void changeFreqBand() override;
+      void changeFreqBand() override;
+      std::ostream & show(std::ostream &) const override ;
+      std::ostream &showOptions(std::ostream &)const override;
     };
 }
 

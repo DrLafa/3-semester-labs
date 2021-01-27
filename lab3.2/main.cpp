@@ -3,14 +3,6 @@
 #include "vector.h"
 #include "getnum.h"
 
-/*bool is_number(const std::string& s){
-    try{
-        std::stod(s);
-    }catch(...){
-        return false;
-    }
-    return true;
-}*/
 
 void show_help(){
   std::cout << std::endl;
