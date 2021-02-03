@@ -3,6 +3,14 @@
 #define OOP4_TELECOM_H
 
 namespace oop4 {
+    /*!
+    \brief Класс департамента телекоммуникаций
+    \author godfuzz3r
+    \version 1.0
+    \date январь 2021 года
+
+    Содержит  функции и реализацию методов, необходимых для департамента телекомуникаций
+    */
     class Telecom : public Departament {
 
     private:

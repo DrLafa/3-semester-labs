@@ -4,6 +4,14 @@
 #define OOP4_RADIOSTATION_H
 
 namespace oop4 {
+    /*!
+    \brief Класс департамента радиостанций
+    \author godfuzz3r
+    \version 1.0
+    \date январь 2021 года
+
+    Содержит  функции и реализацию методов, необходимых для департамента радиостанций
+    */
     class Radiostation : public Departament {
 
     private:

@@ -4,6 +4,12 @@
 #include <vector>
 #include "Departament.h"
 namespace oop4 {
+  /*!
+  \brief Класс, реализующий хранение информации о всех департаментах
+  \author godfuzz3r
+  \version 1.0
+  \date январь 2021 года
+  */
   class Table {
     private:
       std::map<std::string, Departament*> map;
