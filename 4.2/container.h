@@ -88,7 +88,6 @@ namespace oop4 {
       }
 
       T2& operator[](T1 key){
-        std::cout << "bbbbbbbb\n";
           for (int i = 0; i < size; i++){
             if (buff[i].first == key)
               return buff[i].second;
@@ -96,17 +95,6 @@ namespace oop4 {
 
           throw "Not found";
       };
-
-      Iterator& operator=(const Iterator& other) {
-      	std::cout << "aaaaa\n";
-      	return *this;
-      }
-
-      map<T1,T2>& operator[](std::pair<T1, T2> elem){
-        std::cout << "aaaaa\n";
-        //insert(elem);
-        return *this;
-      }
   };
 }
 #endif
