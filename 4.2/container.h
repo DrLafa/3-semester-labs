@@ -31,11 +31,8 @@ namespace oop4 {
 		MapIterator<T1,T2>& operator -=(int n);
 		MapIterator<T1,T2> operator -(int n);
 		int operator -(MapIterator<T1,T2> it);
-		T<T1,T2>& operator [](int n);
 		bool operator <(MapIterator<T1,T2> it);
 		bool operator >(MapIterator<T1,T2> it);
-		bool operator <=(MapIterator<T1,T2> it);
-		bool operator >=(MapIterator<T1,T2> it);
 	};
 
 	template <typename T1, typename T2>
@@ -131,11 +128,6 @@ namespace oop4 {
 	}
 
 	template <typename T1, typename T2>
-	T<T1,T2>& MapIterator<T1,T2>::operator [](int n) {
-		return (*(*this + n));
-	}
-
-	template <typename T1, typename T2>
 	bool MapIterator<T1,T2>::operator < (MapIterator<T1,T2> it) {
 		if (it - *this > 0) return true;
 		else return false;
@@ -144,16 +136,6 @@ namespace oop4 {
 	template <typename T1, typename T2>
 	bool MapIterator<T1,T2>::operator >(MapIterator<T1,T2> it) {
 		return it < *this;
-	}
-
-	template <typename T1, typename T2>
-	bool MapIterator<T1,T2>::operator <=(MapIterator<T1,T2> it) {
-		return !(*this > it);
-	}
-
-	template <typename T1, typename T2>
-	bool MapIterator<T1,T2>::operator >=(MapIterator<T1,T2> it) {
-		return !(*this < it);
 	}
 
 	template <typename T1, typename T2>
